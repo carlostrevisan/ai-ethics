@@ -1,0 +1,28 @@
+{
+  "name": "triple-reasoning-chat-analyzer",
+  "version": "1.0.0",
+  "description": "Educational chat application with triple reasoning and logic analysis",
+  "scripts": {
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install:all": "npm run install:backend && npm run install:frontend",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm start",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build:all": "npm run build:backend && npm run build:frontend",
+    "docker:up": "docker-compose up --build",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "keywords": [
+    "ai",
+    "reasoning",
+    "logic",
+    "education",
+    "philosophy",
+    "critical-thinking"
+  ],
+  "author": "",
+  "license": "MIT"
+}
