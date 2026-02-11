@@ -3,6 +3,7 @@ import { Message, TripleBotResponse } from '../types/chat';
 import { chatApi } from '../services/api';
 import { ChatMessage } from '../components/ChatMessage';
 import { TripleResponse } from '../components/TripleResponse';
+import { Header } from '../components/Header';
 
 export const ChatPage: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -15,7 +16,9 @@ export const ChatPage: React.FC = () => {
   };
 
   useEffect(() => {
-    scrollToBottom();
+    if (messages.length > 0) {
+      scrollToBottom();
+    }
   }, [messages]);
 
   const handleSend = async () => {
@@ -81,8 +84,9 @@ export const ChatPage: React.FC = () => {
 
   return (
     <div className="flex flex-col h-screen bg-white">
+      <Header />
       {/* Chat Area */}
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto pt-16">
         <div className="max-w-4xl mx-auto px-4 py-8">
           {messages.length === 0 ? (
             <div className="max-w-3xl mx-auto">
@@ -273,11 +277,11 @@ export const ChatPage: React.FC = () => {
               {isLoading && (
                 <div className="flex justify-center py-8">
                   <div className="bg-gray-100 rounded-xl px-6 py-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="flex space-x-1">
+                    <div className="flex items-center justify-center space-x-3">
+                      <div className="flex items-center justify-center space-x-1">
                         <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-pink-600 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-2 h-2 bg-green-600 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
+                        <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
                       </div>
                       <span className="text-sm text-gray-700 font-medium">Generating triple reasoning analysis...</span>
                     </div>
@@ -307,7 +311,7 @@ export const ChatPage: React.FC = () => {
             <button
               onClick={handleSend}
               disabled={!inputValue.trim() || isLoading}
-              className="absolute right-3 bottom-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white p-2 rounded-lg transition-colors disabled:cursor-not-allowed"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white p-2.5 rounded-full transition-colors disabled:cursor-not-allowed shadow-md"
               title="Send message"
             >
               <svg

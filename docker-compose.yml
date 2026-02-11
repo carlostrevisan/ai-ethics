@@ -25,7 +25,7 @@ services:
         - REACT_APP_API_URL=${REACT_APP_API_URL:-http://localhost:5001}
     container_name: triple-reasoning-frontend
     ports:
-      - "3000:80"
+      - "3001:80"
     depends_on:
       - backend
     restart: unless-stopped
