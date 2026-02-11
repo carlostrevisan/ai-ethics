@@ -3,8 +3,12 @@ import { OpenRouterService } from '../services/openrouter';
 import { PromptBuilder } from '../services/promptBuilder';
 import { LogicAnalyzer } from '../services/logicAnalyzer';
 import { ChatRequest, AnalyzeLogicRequest, TripleBotResponse } from '../types/chat';
+import { apiKeyAuth } from '../middleware/apiKeyAuth';
 
 const router = express.Router();
+
+// Apply API key authentication to all routes
+router.use(apiKeyAuth);
 
 // Initialize services
 const apiKey = process.env.OPENROUTER_API_KEY;
