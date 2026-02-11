@@ -2,13 +2,13 @@ version: '3.8'
 
 services:
   backend:
-    build: ./backend
+    image: carlostrevisan/ai-ethics-backend:latest
     container_name: triple-reasoning-backend
     ports:
       - "5001:5001"
     environment:
       - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
-      - OPENROUTER_MODEL=${OPENROUTER_MODEL:-meta-llama/llama-3.3-70b-instruct:free}
+      - OPENROUTER_MODEL=${OPENROUTER_MODEL:-meta-llama/llama-3.3-70b-instruct}
       - PORT=5001
       - NODE_ENV=production
     restart: unless-stopped
@@ -19,10 +19,7 @@ services:
       retries: 3
 
   frontend:
-    build:
-      context: ./frontend
-      args:
-        - REACT_APP_API_URL=${REACT_APP_API_URL:-http://localhost:5001}
+    image: carlostrevisan/ai-ethics-frontend:latest
     container_name: triple-reasoning-frontend
     ports:
       - "3001:80"
